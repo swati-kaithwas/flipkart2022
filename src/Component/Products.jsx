@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StoreData } from "../Redux/Action/action";
+import { AddCart, StoreData } from "../Redux/action";
 import "./Products.css";
 
 const Products = () => {
   const [first, setFirst] = useState([]);
   const [showdata, setShowdata] = useState(first);
   const [funsorting, setFunsorting] = useState("");
+  const [category, setCategory] = useState("");
+
   const dispatch = useDispatch();
   useEffect(() => {
-    fetch("http://localhost:3000/productdata")
+    fetch("https://flip-product-data.herokuapp.com/productData")
       .then((res) => res.json())
       .then((res) => dispatch(StoreData(res)))
       .catch((err) => console.log(err));
   }, []);
   const x = useSelector((state) => state.reducer.data);
   const y = useSelector((state) => state.reducer.search);
-
+  console.log("x:", x);
+  console.log("y:", y);
   useEffect(() => {
     setFirst(x);
   });
@@ -40,6 +43,14 @@ const Products = () => {
   // const ratingSortLow = (Rating) => {
   //   const sortLow = first.sort((a, b) => a.Rating - b.Rating);
   // };
+  const AddtoCart = (idx) => {
+    x.forEach((e) => {
+      if (e.id == idx) {
+        dispatch(AddCart(e));
+      }
+    });
+  };
+
   return (
     <div>
       <div>
@@ -65,7 +76,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Grocery");
+                setCategory("Grocery");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100"
               width="80px"
@@ -76,7 +87,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Fashion wear");
+                setCategory("Fashion wear");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png?q=100"
               width="80px"
@@ -87,7 +98,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Electronics");
+                setCategory("Electronics");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100"
               width="80px"
@@ -98,7 +109,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Appliances");
+                setCategory("Appliances");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png?q=100"
               width="80px"
@@ -109,7 +120,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Travel");
+                setCategory("Travel");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/71050627a56b4693.png?q=100"
               width="80px"
@@ -120,7 +131,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Beauty, Toys & More");
+                setCategory("Beauty, Toys & More");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/dff3f7adcf3a90c6.png?q=100"
               width="80px"
@@ -131,7 +142,7 @@ const Products = () => {
           <li>
             <img
               onClick={() => {
-                filtterproduct("Beauty, Toys & More");
+                setCategory("Beauty, Toys & More");
               }}
               src="https://rukminim1.flixcart.com/flap/128/128/image/ee162bad964c46ae.png?q=100"
               width="80px"
@@ -189,14 +200,20 @@ const Products = () => {
       </button>
       <br />
       <div>
-        {showdata
+        {x
+          .filter((e) => {
+            if (category == "") {
+              return e;
+            } else {
+              return e.category == category;
+            }
+          })
+
           .filter((el) => {
-            if (y === " ") {
+            if (y === "") {
               return el;
-            } else if (el.name.toLowerCase().includes(y.toLowerCase())) {
-              return el;
-            } else if (el.category.toLowerCase().includes(y.toLowerCase())) {
-              return el;
+            } else {
+              return el.name.toLowerCase().includes(y.toLowerCase());
             }
           })
 
@@ -204,9 +221,9 @@ const Products = () => {
             if (funsorting == "") {
               return;
             } else if (funsorting == "low to high") {
-              return a.price - b.price;
+              return +a.price - +b.price;
             } else if (funsorting == "high to low") {
-              return b.price - a.price;
+              return +b.price - +a.price;
             }
           })
           .map((e) => {
@@ -221,6 +238,14 @@ const Products = () => {
                   <p> {e.category}</p>
                   <p> {e.price}</p>
                   <p> {e.Rating}</p>
+                  <button
+                    id="btn1"
+                    onClick={() => {
+                      AddtoCart(e.id);
+                    }}
+                  >
+                    ADD TO BAG
+                  </button>
                 </div>
               </div>
             );

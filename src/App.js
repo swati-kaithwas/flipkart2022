@@ -4,7 +4,7 @@ import { Navbar } from "./Component/Navbar";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { StoreData } from "./Redux/Action/action";
+import { StoreData } from "./Redux/action";
 import { useSelector } from "react-redux";
 import { Head } from "./components/Landing/Head";
 // import { ShowProduct } from "./components/Landing/ShowProduct";
@@ -26,13 +26,13 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+
       <Products />
-      {/* <Cart /> */}
-      {/* <Head /> */}
+
       <Routes>
-        {/* <Route path="/Products" element={<Products />}></Route> */}
+        <Route path="/Products" element={<Products />}></Route>
         <Route path="/account" element={<Account />}></Route>
-        <Route path="/"></Route>
+        <Route path="/Cart" element={<Cart />}></Route>
       </Routes>
     </div>
   );

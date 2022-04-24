@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { searchData } from "../Redux/Action/action";
+import { searchData } from "../Redux/action";
 
 import "./Navbar.css";
 
@@ -30,7 +30,9 @@ const Navbar = () => {
           <Link to="./account">Login</Link>
         </button>
 
-        <button>cart</button>
+        <button>
+          <Link to="./Cart"> Cart</Link>
+        </button>
       </div>
     </div>
   );
