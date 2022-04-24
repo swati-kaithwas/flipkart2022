@@ -1,0 +1,30 @@
+.nav_bar{
+    height:70px;
+width:100%;
+background-color:blue;
+display: grid;
+grid-template-columns: 20% 40% 20% 10%;
+place-items: center;
+}
+.nav_bar input{
+    width:500px;
+    height:35px;
+    align-items: center;
+    color: gray;
+    /* margin-right: 300px; */
+    border: none;
+}
+.nav_bar img{
+    /* margin-right: 400px; */
+    width: 100px;
+    height: 50px;
+    align-items: center;
+
+}
+.nav_bar button{
+    height: 35px;
+    width:80px;
+    color: blue;
+    background-color: white;
+    border: none;
+}
