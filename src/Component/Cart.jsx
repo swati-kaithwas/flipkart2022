@@ -28,7 +28,7 @@ const Cart = () => {
                 <img src={ele.img} alt="product" />
               </div>
               <div className="text">
-                <p s> {`Brand : ${ele.brand}`}</p>
+                <p s> {`brand : ${ele.brand}`}</p>
                 <p>{`${ele.name}`}</p>
                 <p>{`Price Rs.  ${ele.price}`}</p>
                 <button

@@ -228,11 +228,11 @@ const Products = () => {
           })
           .map((e) => {
             return (
-              <div>
-                <div>
+              <div className="prod1">
+                <div className="prod2">
                   <img height="220px" width="200px" src={e.img} />
                 </div>
-                <div>
+                <div className="brand">
                   <p> {e.name}</p>
                   <p> {e.Brand}</p>
                   <p> {e.category}</p>
