@@ -18,8 +18,8 @@ const Products = () => {
   }, []);
   const x = useSelector((state) => state.reducer.data);
   const y = useSelector((state) => state.reducer.search);
-  console.log("x:", x);
-  console.log("y:", y);
+  // console.log("x:", x);
+  // console.log("y:", y);
   useEffect(() => {
     setFirst(x);
   });
@@ -225,8 +225,8 @@ const Products = () => {
             } else if (funsorting == "high to low") {
               return +b.price - +a.price;
             }
-          })
-          .map((e) => {
+          }) 
+        .map((e) => {
             return (
               <div className="prod1">
                 <div className="prod2">

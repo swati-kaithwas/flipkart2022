@@ -12,6 +12,10 @@ import { Head } from "./components/Landing/Head";
 import { Account } from "./Component/Account";
 import { Products } from "./Component/Products";
 import Cart from "./Component/Cart";
+import { Carousel } from "./Component/Carousel";
+import { caruosel } from "./Component/Caruoseldata";
+import { Billing } from "./Component/Billing";
+import { Producthead } from "./Component/Producthead";
 
 function App() {
   // const dispatch = useDispatch();
@@ -26,13 +30,15 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-
-      <Products />
+      {/* <Producthead /> */}
+      {/* <Products /> */}
+      {/* <Carousel slides={caruosel} /> */}
 
       <Routes>
-        <Route path="/Products" element={<Products />}></Route>
+        <Route path="/" element={<Products />}></Route>
         <Route path="/account" element={<Account />}></Route>
         <Route path="/Cart" element={<Cart />}></Route>
+        <Route path="/Billing" element={<Billing />}></Route>
       </Routes>
     </div>
   );

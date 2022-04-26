@@ -1,0 +1,27 @@
+.image{
+    width: 1000px;
+    height: 500px;
+    
+}
+.right_Arrow{
+    position: absolute;
+    top:50%;
+    right:32px;
+    font-size: 3rem;
+    color: black;
+    background-color: aliceblue;
+    height: 10px;
+    width: 20px;
+
+}
+.left_Arrow{
+    position: absolute;
+    top:50%;
+    left:32px;
+    font-size: 60px;
+    color: black;
+    background-color: aliceblue;
+    height: 20px;
+    width: 70px;
+
+}
